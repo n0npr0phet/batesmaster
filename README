@@ -1,1 +1,53 @@
-nothing here
+batesmaster - pdf bates stamper
+--------------------------------------------------------
+batesmaster is Open Source software licensed under GPLv3
+so far written by Mark Manoukian and Gregory Pruden
+
+usage:
+Option                                  Description                            
+------                                  -----------                            
+-?, --help                              output file name for bates stamped pdf 
+--format <format string>                advanced java style format string for  
+                                          bastes number, default: %05d         
+--inpdf <file name>                     REQUIRED pdf file to add bates stamps  
+--overwrite                             output file name for bates stamped pdf 
+--pdfout <file name>                    output file name for bates stamped pdf 
+--seed, --startnum <Integer: new        set begining bates number, default: 1  
+  number>                                                                      
+--xoffset <Integer: offset in pixels>   offset location from left of page,     
+                                          default: 10                          
+--yoffset <Integer: offset in pixels>   offset location from bottom of page,   
+                                          default: 10                          
+
+Decription:
+batesmaster uses the iText libary to stamp bates numbers on pages of a pdf document. 
+
+The most basic operation of batesmaster requires only a pdf document filename specified with the
+--inpdf <filename> option.  This will produce a new pdf document named <filename>.out.pdf with bates
+numbers beginning with 00001 on the bottom left of each page and incrementing 00002, 00003 for each 
+subsequent page in the document.  
+
+To locate the stamped number elsewhere on the page use the --xoffset
+and --yoffset options to move it more pixels right (xoffset) or more pixels from the bottom (yoffset).
+Future versions batesmaster will improve this location to selecting corners or edges and including
+rotation as these are available with the iText library.
+ 
+Numbering begins with the seed, using the --seed option which defaults to 1, and is formated with the 
+--format option and a java string format syntax which defaults to %05d which produces numbers that look
+like "00001."  
+
+Numbering is always done to second output document specified by the --pdfout <filename> option but
+that defaults to <filename>.out.pdf.  If the file already exists batesmaster will produce an error
+unless the --overwrite option is specified.
+
+For more information about the Java formatting string syntax see:
+http://java.sun.com/javase/6/docs/api/java/util/Formatter.html#syntax
+
+For more information about bates numbering please see:
+http://en.wikipedia.org/wiki/Bates_numbering
+
+Examples:
+
+java -jar batesmaster.jar --inpdf "C:\test.pdf"
+
+java -jar batesmaster.jar --inpdf "C:\test.pdf" --pdfout "H:\test.pdf" --seed=5 --overwrite -xoffset=30 -yoffset=5 --format=M%07d

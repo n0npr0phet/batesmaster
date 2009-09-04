@@ -46,6 +46,13 @@ public class Main {
         	System.exit(1);
         }
         
+        //check for usage request
+        if (options.has("help")||options.has("?"))
+        {
+        	usage("Visit http://batesmaster.com for more info!\n");
+        	System.exit(0);
+        }
+        
 		//check input file
 		if (!options.has("inpdf") || !options.hasArgument("inpdf"))
 		{
