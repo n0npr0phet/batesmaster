@@ -2,7 +2,7 @@ package com.batesmaster;
 
 import java.io.IOException;
 import java.io.FileOutputStream;
-import java.io.PrintStream;
+
 
 import com.lowagie.text.DocumentException;
 
@@ -135,7 +135,7 @@ public class batesStamper {
 			for(int page=1; page<=numpages; page++)
 			{
 				int batesnum = seed-1 + page;
-				String bates = String.format("%05d", batesnum);
+				String bates = String.format(Format, batesnum);
 				
 				//call the bates writer for each page
 				if (!writebates(reader, stamper, bates, page))

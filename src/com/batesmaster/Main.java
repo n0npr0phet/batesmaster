@@ -95,9 +95,9 @@ public class Main {
 		
 		//set offsets
 		if (options.has(xoff))
-			bater.setSeed(xoff.value(options));
+			bater.setOffsetx(xoff.value(options));
 		if (options.has(yoff))
-			bater.setSeed(yoff.value(options));			
+			bater.setOffsety(yoff.value(options));			
 		//set format
 		if (options.has("format"))
 			bater.setFormat((String)options.valueOf("format"));
