@@ -195,6 +195,7 @@ public class batesStamper {
 				float posy = offsety;
 				
 				overContent.showTextAligned(PdfContentByte.ALIGN_LEFT, bates, posx, posy, 0);
+				overContent.endText();
 			}
 			return true;
 

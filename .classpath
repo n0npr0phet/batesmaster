@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/gregory/My Documents/bm/batesmaster/lib/iText-2.1.7.jar" sourcepath="H:/Workspace/iText/src">
+	<classpathentry kind="lib" path="C:/Users/prudenga/Documents/bm/batesmaster/lib/iText-2.1.7.jar" sourcepath="H:/Workspace/iText/src">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/H:/Workspace/iText/doc/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Documents and Settings/gregory/My Documents/bm/batesmaster/lib/jopt-simple-3.1.jar" sourcepath="H:/Workspace/jopt-simple-3.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/prudenga/Documents/bm/batesmaster/lib/jopt-simple-3.1.jar" sourcepath="H:/Workspace/jopt-simple-3.1-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
