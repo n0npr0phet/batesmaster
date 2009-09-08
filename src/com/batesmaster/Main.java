@@ -112,7 +112,7 @@ public class Main {
 		//stamp away
 		if (bater.ProcessDoc())
 		{
-			System.out.println("Document successfully mastered.");
+			System.out.println("Document successfully bates mastered.");
 			//done
 			System.exit(0);
 		}
