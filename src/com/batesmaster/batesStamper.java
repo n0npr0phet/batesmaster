@@ -178,7 +178,10 @@ public class batesStamper {
 			
 			//set the font
 			//TODO somebody add a command line option for this...
-			bf = BaseFont.createFont("Helvetica", BaseFont.WINANSI,	false);
+
+			bf = BaseFont.createFont(BaseFont.HELVETICA,
+					BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
+
 			//TODO same
 			int txtsize = 10;
 			

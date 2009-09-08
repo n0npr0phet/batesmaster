@@ -49,7 +49,7 @@ public class Main {
         //check for usage request
         if (options.has("help")||options.has("?"))
         {
-        	usage("Visit http://batesmaster.com for more info!\n");
+        	usage("Visit http://batesmaster.com for more info!\n",0);
         	System.exit(0);
         }
         
@@ -124,6 +124,15 @@ public class Main {
 		}
 	}
 	
+	private static void usage(String string, int i) {
+		if (i==0)
+		{
+			// just print without error
+			System.out.println(string);
+		}
+		usage();
+	}
+
 	/**
 	 * print the usage statement
 	 * @param err add an optional error.
