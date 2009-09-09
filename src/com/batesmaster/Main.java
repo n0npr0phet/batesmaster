@@ -22,7 +22,7 @@ public class Main {
 	static OptionSpec<Integer> seed;
 	static OptionSpec<Integer> xoff;
 	static OptionSpec<Integer> yoff;
-	
+	static OptionSpec<Integer> rotate;
 	/**
 	 * command line interface
 	 */
@@ -104,10 +104,14 @@ public class Main {
 		if (options.has(xoff))
 			bater.setOffsetx(xoff.value(options));
 		if (options.has(yoff))
-			bater.setOffsety(yoff.value(options));			
+			bater.setOffsety(yoff.value(options));		
 		//set format
 		if (options.has("format"))
 			bater.setFormat((String)options.valueOf("format"));
+		
+		//set rotation
+		if (options.has("rotate"))
+			bater.setRotation(rotate.value(options));
 		
 		//stamp away
 		if (bater.ProcessDoc())
@@ -187,6 +191,7 @@ public class Main {
 		seed = cmdline.acceptsAll(asList("seed","startnum"),"set begining bates number, default: 1").withRequiredArg().ofType( Integer.class ).describedAs("new number");
 		xoff = cmdline.acceptsAll(asList("xoffset"),"offset location from left of page, default: 10").withRequiredArg().ofType( Integer.class ).describedAs("offset in pixels");
 		yoff = cmdline.acceptsAll(asList("yoffset"),"offset location from bottom of page, default: 10").withRequiredArg().ofType( Integer.class ).describedAs("offset in pixels");
+		rotate = cmdline.acceptsAll(asList("rotate"),"rotation of the number on the page, default: 0").withRequiredArg().ofType( Integer.class ).describedAs("rotation in degrees");
 		cmdline.acceptsAll(asList("format"),"advanced java style format string for bastes number, default: %05d ").withRequiredArg().ofType( String.class ).describedAs("format string");		
 		cmdline.acceptsAll(asList("inpdf"),"REQUIRED pdf file to add bates stamps").withRequiredArg().ofType( String.class ).describedAs("file name");	
 		cmdline.acceptsAll(asList("pdfout"),"output file name for bates stamped pdf").withRequiredArg().ofType( String.class ).describedAs("file name");

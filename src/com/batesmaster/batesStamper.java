@@ -77,7 +77,16 @@ public class batesStamper {
 	{
 		offsety = newValue;
 	}
-	
+	public int rotation = 0;
+	/**
+	 * Sets the rotation on the page
+	 * 
+	 * @param newValue the number of degrees of rotation the page, where 0 is normal. 
+	 */
+	public void setRotation( int newValue)
+	{
+		rotation = newValue;
+	}	
 	public int seed = 1;
 	/**
 	 * Sets a new seed value for the bates number which defaults to 1
@@ -138,7 +147,7 @@ public class batesStamper {
 				String bates = String.format(Format, batesnum);
 				
 				//call the bates writer for each page
-				if (!writebates(reader, stamper, bates, page))
+				if (!writebates(reader, stamper, bates, page, rotation))
 				{
 					return false;
 				}
@@ -161,7 +170,6 @@ public class batesStamper {
 		return true;
 
 	}
-	
 	/**
 	 * writebates computes the location and adds the bates text to the page 
 	 * 
@@ -170,8 +178,25 @@ public class batesStamper {
 	 * @param bates			the bates number to use
 	 * @param page			the page number to stamp
 	 * @return				return true on success false otherwise
+	 * 
+	 * overloaded for backwards compatibility.
+	 * 
 	 */
 	public boolean writebates(PdfReader currentReader, PdfStamper stamper, String bates, int page)
+	{
+		return writebates(currentReader, stamper, bates, page, 0);
+	}
+	/**
+	 * writebates computes the location and adds the bates text to the page 
+	 * 
+	 * @param currentReader the open reader object
+	 * @param stamper		the open stamper object
+	 * @param bates			the bates number to use
+	 * @param page			the page number to stamp
+	 * @param rotation		the rotation of the number on the page
+	 * @return				return true on success false otherwise
+	 */
+	public boolean writebates(PdfReader currentReader, PdfStamper stamper, String bates, int page, int rotate)
 	{
 		BaseFont bf;
 		try {
@@ -194,7 +219,7 @@ public class batesStamper {
 				float posx = offsetx; 
 				float posy = offsety;
 				
-				overContent.showTextAligned(PdfContentByte.ALIGN_LEFT, bates, posx, posy, 0);
+				overContent.showTextAligned(PdfContentByte.ALIGN_LEFT, bates, posx, posy, rotate);
 				overContent.endText();
 			}
 			return true;
