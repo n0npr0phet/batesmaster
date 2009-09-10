@@ -4,21 +4,22 @@ batesmaster is Open Source software licensed under GPLv3
 so far written by Mark Manoukian and Gregory Pruden
 
 usage:
-Option                                  Description                            
-------                                  -----------                            
--?, --help                              output file name for bates stamped pdf 
---format <format string>                advanced java style format string for  
-                                          bastes number, default: %05d         
---inpdf <file name>                     REQUIRED pdf file to add bates stamps  
---overwrite                             output file name for bates stamped pdf 
---pdfout <file name>                    output file name for bates stamped pdf 
---seed, --startnum <Integer: new        set begining bates number, default: 1  
-  number>                                                                      
---xoffset <Integer: offset in pixels>   offset location from left of page,     
-                                          default: 10                          
---yoffset <Integer: offset in pixels>   offset location from bottom of page,   
-                                          default: 10                          
-
+Option                                  Description
+------                                  -----------
+-?, --help                              output file name for bates stamped pdf
+--format <format string>                advanced java style format string for
+                                          bastes number, default: %05d
+--inpdf <file name>                     REQUIRED pdf file to add bates stamps
+--overwrite                             output file name for bates stamped pdf
+--pdfout <file name>                    output file name for bates stamped pdf
+--rotate <Integer: rotation in degrees> rotation of the number on the page,
+                                          default: 0
+--seed, --startnum <Integer: new        set begining bates number, default: 1
+  number>
+--xoffset <Integer: offset in pixels>   offset location from left of page,
+                                          default: 10
+--yoffset <Integer: offset in pixels>   offset location from bottom of page,
+                                          default: 10
 Decription:
 batesmaster uses the iText libary to stamp bates numbers on pages of a pdf document. 
 
