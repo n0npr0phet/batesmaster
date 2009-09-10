@@ -14,6 +14,9 @@ import joptsimple.OptionSpec;
  * @author Gregory Pruden
  * @version 0.1
  *
+ * copyright 2009 Mark Manoukian and Gregory Pruden
+ * 
+ *
  */
 public class Main {
 

@@ -16,6 +16,11 @@ import com.lowagie.text.pdf.PdfReader;
  *batesStamper class
  *
  *this class is responsible for doing all the stamping.
+ *
+ *@author gregory pruden
+ *@author mark manoukian
+ *
+ *copyright 2009 Mark Manoukian and Gregory Pruden
  */
 public class batesStamper {
 	
