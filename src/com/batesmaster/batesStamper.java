@@ -1,5 +1,6 @@
 package com.batesmaster;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileOutputStream;
 
@@ -156,6 +157,12 @@ public class batesStamper {
 			}
 			stamper.close();
 
+		}
+		catch (FileNotFoundException exfnf)
+		{
+			
+			Main.displayln("Batesmaster cannot access the input file( --inpdf) because it is being used by another process.");
+			return false;
 		}
 		catch (IOException ex){
 			ex.printStackTrace();

@@ -127,16 +127,20 @@ public class Main {
 			System.exit(0);
 		}
 	}
-	
-	private static void usage(String string, int i) {
+	static void usage(String string, int i) {
 		if (i==0)
 		{
 			// just print without error
 			System.out.println(string);
+			usage();
 		}
-		usage();
 	}
-
+    static void displayln(String string)
+    {
+    	//just print.
+    	System.out.println(string);
+		System.out.println();
+    }
 	/**
 	 * print the usage statement
 	 * @param err add an optional error.
@@ -144,10 +148,9 @@ public class Main {
 	public static void usage(String err)
 	{
 		System.out.println("Error: "+err);
+		System.out.println();
 		usage();
 	}
-	
-	
 	/**
 	 * print the usage statement.
 	 */
