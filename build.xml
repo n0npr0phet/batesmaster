@@ -3,14 +3,14 @@
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="C:/Users/gregory/Documents/git/batesmaster/bin/com/batesmaster/batesmaster.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="bin/com/batesmaster/batesmaster32.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="com.batesmaster.Main"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
-            <fileset dir="C:/Users/gregory/Documents/git/batesmaster/bin"/>
-            <zipfileset excludes="META-INF/*.SF" src="C:/Users/gregory/Documents/git/batesmaster/lib/iText-2.1.7.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="C:/Users/gregory/Documents/git/batesmaster/lib/jopt-simple-3.1.jar"/>
+            <fileset dir="bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="lib/iText-2.1.7.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="lib/jopt-simple-3.1.jar"/>
         </jar>
     </target>
 </project>
