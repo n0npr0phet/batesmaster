@@ -26,6 +26,7 @@ public class Main {
 	static OptionSpec<Integer> xoff;
 	static OptionSpec<Integer> yoff;
 	static OptionSpec<Integer> rotate;
+	static OptionSpec<Integer> origin;
 	/**
 	 * command line interface
 	 */
@@ -116,6 +117,10 @@ public class Main {
 		if (options.has("rotate"))
 			bater.setRotation(rotate.value(options));
 		
+		//set origin
+		if (options.has("origin"))
+			bater.setOrigin(origin.value(options));
+		
 		//stamp away
 		if (bater.ProcessDoc())
 		{
@@ -198,6 +203,7 @@ public class Main {
 		xoff = cmdline.acceptsAll(asList("xoffset"),"offset location from left of page, default: 10").withRequiredArg().ofType( Integer.class ).describedAs("offset in pixels");
 		yoff = cmdline.acceptsAll(asList("yoffset"),"offset location from bottom of page, default: 10").withRequiredArg().ofType( Integer.class ).describedAs("offset in pixels");
 		rotate = cmdline.acceptsAll(asList("rotate"),"rotation of the number on the page, default: 0").withRequiredArg().ofType( Integer.class ).describedAs("rotation in degrees");
+		origin = cmdline.acceptsAll(asList("origin"),"location of the stamp on the page, default: 0").withRequiredArg().ofType( Integer.class ).describedAs("origin number");
 		cmdline.acceptsAll(asList("format"),"advanced java style format string for bastes number, default: %05d ").withRequiredArg().ofType( String.class ).describedAs("format string");		
 		cmdline.acceptsAll(asList("inpdf"),"REQUIRED pdf file to add bates stamps").withRequiredArg().ofType( String.class ).describedAs("file name");	
 		cmdline.acceptsAll(asList("pdfout"),"output file name for bates stamped pdf").withRequiredArg().ofType( String.class ).describedAs("file name");

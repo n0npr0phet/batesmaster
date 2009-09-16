@@ -1,11 +1,13 @@
 package com.batesmaster;
 
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileOutputStream;
 
 
 import com.lowagie.text.DocumentException;
+
 
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
@@ -93,6 +95,17 @@ public class batesStamper {
 	{
 		rotation = newValue;
 	}	
+	
+	public int origin=0;
+	/***
+	 * Sets the origin of the bates stamp to a new corner/side of the pdf
+	 * @param newValue the origin to set
+	 */
+	public void setOrigin( int newValue)
+	{
+		origin = newValue;
+	}
+
 	public int seed = 1;
 	/**
 	 * Sets a new seed value for the bates number which defaults to 1
@@ -182,6 +195,10 @@ public class batesStamper {
 		return true;
 
 	}
+	
+	static public int[] TextAlignment= {PdfContentByte.ALIGN_LEFT, PdfContentByte.ALIGN_CENTER, PdfContentByte.ALIGN_RIGHT, PdfContentByte.ALIGN_RIGHT, PdfContentByte.ALIGN_RIGHT, PdfContentByte.ALIGN_CENTER,  PdfContentByte.ALIGN_LEFT,  PdfContentByte.ALIGN_LEFT,  PdfContentByte.ALIGN_CENTER};
+
+	
 	/**
 	 * writebates computes the location and adds the bates text to the page 
 	 * 
@@ -205,7 +222,7 @@ public class batesStamper {
 	 * @param stamper		the open stamper object
 	 * @param bates			the bates number to use
 	 * @param page			the page number to stamp
-	 * @param rotation		the rotation of the number on the page
+	 * @param rotate		the rotation of the number on the page
 	 * @return				return true on success false otherwise
 	 */
 	public boolean writebates(PdfReader currentReader, PdfStamper stamper, String bates, int page, int rotate)
@@ -228,10 +245,10 @@ public class batesStamper {
 				overContent.beginText();
 				overContent.setFontAndSize(bf, txtsize);
 
-				float posx = offsetx; 
-				float posy = offsety;
+				Origin org = new Origin(stamper.getReader().getPageSizeWithRotation(page), origin);
+				org = org.Add(new Origin(offsetx, offsety));
 				
-				overContent.showTextAligned(PdfContentByte.ALIGN_LEFT, bates, posx, posy, rotate);
+				overContent.showTextAligned(batesStamper.TextAlignment[origin], bates, org.x, org.y, rotate);
 				overContent.endText();
 			}
 			return true;
