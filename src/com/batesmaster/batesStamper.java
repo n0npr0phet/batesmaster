@@ -19,8 +19,8 @@ import com.lowagie.text.pdf.PdfReader;
  *
  *this class is responsible for doing all the stamping.
  *
- *@author gregory pruden
- *@author mark manoukian
+ *@author Gregory Pruden
+ *@author Mark Manoukian
  *
  *copyright 2009 Mark Manoukian and Gregory Pruden
  */
@@ -51,6 +51,7 @@ public class batesStamper {
 	}
 	
 	public int numpages = 1;
+	public int lastnumber = -1;
 	private PdfReader reader;
 	private PdfStamper stamper;
 	
@@ -115,6 +116,7 @@ public class batesStamper {
 	public void setSeed( int newValue)
 	{
 		seed = newValue;
+		lastnumber = -1;
 	}
 	
 	public String inputFileName = "";
@@ -162,8 +164,10 @@ public class batesStamper {
 			//move thru the pages stamping
 			for(int page=1; page<=numpages; page++)
 			{
-				int batesnum = seed-1 + page;
-				String bates = String.format(Format, batesnum);
+				if (lastnumber==-1)
+					lastnumber = seed-1 + page;
+
+				String bates = String.format(Format, lastnumber++);
 				
 				//call the bates writer for each page
 				if (!writebates(reader, stamper, bates, page, rotation))
@@ -174,7 +178,7 @@ public class batesStamper {
 				Thread.yield();
 			}
 			stamper.close();
-
+			reader = null;
 		}
 		catch (FileNotFoundException exfnf)
 		{
@@ -196,7 +200,9 @@ public class batesStamper {
 
 	}
 	
-	static public int[] TextAlignment= {PdfContentByte.ALIGN_LEFT, PdfContentByte.ALIGN_CENTER, PdfContentByte.ALIGN_RIGHT, PdfContentByte.ALIGN_RIGHT, PdfContentByte.ALIGN_RIGHT, PdfContentByte.ALIGN_CENTER,  PdfContentByte.ALIGN_LEFT,  PdfContentByte.ALIGN_LEFT,  PdfContentByte.ALIGN_CENTER};
+	static public int[] DefaultTextAlignment= {PdfContentByte.ALIGN_LEFT, PdfContentByte.ALIGN_CENTER, PdfContentByte.ALIGN_RIGHT, PdfContentByte.ALIGN_RIGHT, PdfContentByte.ALIGN_RIGHT, PdfContentByte.ALIGN_CENTER,  PdfContentByte.ALIGN_LEFT,  PdfContentByte.ALIGN_LEFT,  PdfContentByte.ALIGN_CENTER};
+    static public float[] DefaultRotation = {0.0f, 0.0f, 0.0f, 270.0f, 0.0f, 0.0f, 0.0f, 90.0f, 0.0f};
+    static public Origin[] DefaultOffset = { new Origin(10,10), new Origin(0, 10), new Origin(-30, 10), new Origin(-30,0), new Origin(-30,-30), new Origin(0, -30), new Origin(10,-30), new Origin(10,0), new Origin(0,0)};
 
 	
 	/**
@@ -246,9 +252,10 @@ public class batesStamper {
 				overContent.setFontAndSize(bf, txtsize);
 
 				Origin org = new Origin(stamper.getReader().getPageSizeWithRotation(page), origin);
+				org = org.Add(batesStamper.DefaultOffset[origin]);
 				org = org.Add(new Origin(offsetx, offsety));
 				
-				overContent.showTextAligned(batesStamper.TextAlignment[origin], bates, org.x, org.y, rotate);
+				overContent.showTextAligned(batesStamper.DefaultTextAlignment[origin], bates, org.x, org.y, batesStamper.DefaultRotation[origin]+(float)rotate);
 				overContent.endText();
 			}
 			return true;

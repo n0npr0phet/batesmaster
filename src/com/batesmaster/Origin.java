@@ -3,9 +3,14 @@ package com.batesmaster;
 import com.lowagie.text.Rectangle;
 
 
-/***
- * float point class to act as our origin 
- * @author gregory
+/**
+ * float x,y storage.
+ * @author Mark Manoukian
+ * @author Gregory Pruden
+ * @version 0.1
+ *
+ * copyright 2009 Mark Manoukian and Gregory Pruden
+ * 
  *
  */
 public class Origin {
